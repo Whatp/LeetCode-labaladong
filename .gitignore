@@ -1,4 +1,13 @@
-solution/.lcpr_data/bricks.json
-.lcpr_data/bricks.json
-.lcpr_data/group.json
-leetcode/editor/cn/*
+# Ignore everything
+*
+
+# But do not ignore solution/ directory
+!important solution/
+
+# Also don't ignore the .gitignore file itself
+!important .gitignore
+
+# Ignore specific files in solution/ that shouldn't be tracked
+solution/.lcpr_data/
+solution/.lcpr_data/**
+!important solution/*
