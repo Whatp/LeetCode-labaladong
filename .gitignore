@@ -1,13 +1,10 @@
 # Ignore everything
 *
-
 # But do not ignore solution/ directory
-!important solution/
-
+!solution/
 # Also don't ignore the .gitignore file itself
-!important .gitignore
-
+!.gitignore
 # Ignore specific files in solution/ that shouldn't be tracked
 solution/.lcpr_data/
 solution/.lcpr_data/**
-!important solution/*
+!solution/*
