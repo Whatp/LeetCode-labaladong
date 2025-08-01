@@ -1,14 +1,11 @@
 /*
- * @lc app=leetcode.cn id=226 lang=java
+ * @lc app=leetcode.cn id=101 lang=java
  * @lcpr version=30202
  *
- * [226] 翻转二叉树
+ * [101] 对称二叉树
  */
 
 // @lc code=start
-
-import javax.swing.tree.TreeNode;
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -25,14 +22,8 @@ import javax.swing.tree.TreeNode;
  * }
  */
 class Solution {
-    public TreeNode invertTree(TreeNode root) {
-        if (root == null) return null;
-        TreeNode left = invertTree(root.left);
-        TreeNode right = invertTree(root.right);
-        root.left = right;
-        root.right = left;
-
-        return root;
+    public boolean isSymmetric(TreeNode root) {
+        
     }
 }
 // @lc code=end
@@ -41,15 +32,11 @@ class Solution {
 
 /*
 // @lcpr case=start
-// [4,2,7,1,3,6,9]\n
+// [1,2,2,3,4,4,3]\n
 // @lcpr case=end
 
 // @lcpr case=start
-// [2,1,3]\n
-// @lcpr case=end
-
-// @lcpr case=start
-// []\n
+// [1,2,2,null,3,null,3]\n
 // @lcpr case=end
 
  */
