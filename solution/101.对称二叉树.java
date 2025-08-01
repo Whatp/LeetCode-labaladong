@@ -23,7 +23,25 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        
+        if (root == null) return true;
+        // 队列
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.offer(root.left);
+        deque.offer(root.right);
+
+        while (!deque.isEmpty()) {
+            TreeNode left = deque.poll();
+            TreeNode right = deque.poll();
+            if (left == null && right == null) continue;
+            if (left == null || right == null) return false;
+            if (left.val != right.val) return false;
+
+            deque.offer(left.left);
+            deque.offer(right.right);
+            deque.offer(left.right);
+            deque.offer(right.left);
+        }
+        return true;
     }
 }
 // @lc code=end
