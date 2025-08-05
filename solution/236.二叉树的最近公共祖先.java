@@ -6,6 +6,9 @@
  */
 
 // @lc code=start
+
+import javax.swing.tree.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -17,8 +20,20 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        /**
+         * 这个题的思路就是：假设root是LCA（最近公共祖先），不是根节点的意思
+         * p 和 q 在 root 的子树中，且分列 root 的 异侧（即分别在左、右子树中）；
+         * p=root ，且 q 在 root 的左或右子树中；
+         * q=root ，且 p 在 root 的左或右子树中；
+         */
         if (root == null || root == p || root == q) return root;
         
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+
+        if (left == null) return right;
+        if (right == null) return left;
+        return root;
     }
 }
 // @lc code=end
