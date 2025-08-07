@@ -27,8 +27,32 @@ class Node {
 */
 
 class Solution {
+    
+    // 如果在方法里面创建的话，每次递归都会创建一个新的哈希表
+    
     public Node cloneGraph(Node node) {
-        
+        if (node == null) return node;
+
+        HashMap<Node, Node> visited = new HashMap<>();
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(node);
+
+        visited.put(node, new Node(node.val, new ArrayList<>()));
+
+        while (!queue.isEmpty()) {
+            Node n = queue.poll();
+            // 遍历该节点的邻居，如果没有访问过，把它的邻居复制
+            for (Node neighbor : n.neighbors) {
+                if (!visited.containsKey(neighbor)) {
+                    visited.put(neighbor, new Node(neighbor.val));
+                    queue.offer(neighbor);
+                }
+                // 更新当前节点的邻居列表
+                visited.get(n).neighbors.add(visited.get(neighbor));
+            }
+        }
+        return visited.get(node);
     }
 }
 // @lc code=end
