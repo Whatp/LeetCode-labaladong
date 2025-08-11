@@ -6,29 +6,35 @@
  */
 
 // @lc code=start
+
+import java.util.HashSet;
+
 class Trie {
 
-    class TrieNode {
-        TrieNode[] children = new TrieNode[26];
-        boolean isEnd = false;
-    }
-
-    private TrieNode root;
+    HashSet<String> set;
 
     public Trie() {
-        root = new TrieNode();
+        set = new HashSet<>();
     }
     
     public void insert(String word) {
-        
+        set.add(word);
     }
     
     public boolean search(String word) {
-        
+        if (set.contains(word)) {
+            return true;
+        }
+        return false;
     }
     
     public boolean startsWith(String prefix) {
-        
+        for (String string : set) {
+            if (string.startsWith(prefix)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
