@@ -22,6 +22,7 @@ class Solution {
                 right = mid - 1;
             }
         }
+        // 不符合要求就直接返回了
         if (right < 0 || nums[right] != target) {
             return res;
         }
@@ -38,6 +39,7 @@ class Solution {
                 left = mid + 1;
             }
         }
+        // 找不到就直接返回了
         if (left >= nums.length || nums[left] != target) {
             return res;
         }
