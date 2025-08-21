@@ -20,11 +20,24 @@ class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
 
-        ListNode l1 = null;
-        for (ListNode listNode : lists) {
-            l1 = mergeTwo(l1, listNode);
+        // ListNode l1 = null;
+        // for (ListNode listNode : lists) {
+        //     l1 = mergeTwo(l1, listNode);
+        // }
+        // return l1;
+
+        /**
+         * 两两的归并
+         */
+        int interval = 1;
+        while (interval < lists.length) {
+            for (int i = 0; i + interval < lists.length; i += 2 * interval) {
+                lists[i] = mergeTwo(lists[i], lists[i + interval]);
+            }
+            interval *= 2;
         }
-        return l1;
+        return lists[0];
+
     }
 
     private ListNode mergeTwo(ListNode l1, ListNode l2) {
