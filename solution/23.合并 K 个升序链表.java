@@ -22,7 +22,7 @@ class Solution {
 
         ListNode l1 = null;
         for (ListNode listNode : lists) {
-            l1 newNode = mergeTwo(l1, listNode);
+            l1 = mergeTwo(l1, listNode);
         }
         return l1;
     }
@@ -34,10 +34,10 @@ class Solution {
         ListNode curr = dummy;
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
-                curr = l1;
+                curr.next = l1;
                 l1 = l1.next;
             } else {
-                curr = l2;
+                curr.next = l2;
                 l2 = l2.next;
             }
             curr = curr.next;
