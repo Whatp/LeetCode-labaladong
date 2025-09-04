@@ -6,8 +6,11 @@
  */
 
 // @lc code=start
+
+import java.util.Arrays;
+
 class Solution {
-    public int climbStairs(int n) {
+    public int climbStairs1(int n) {
         /**
          * 如果想要爬到第n阶，要么从第n - 1上去，要么从n - 2上去，只有这两个
          * 也就是状态转移方程 dp[n] = dp[n - 1] + dp[n - 2]
@@ -25,6 +28,24 @@ class Solution {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
         return dp[n];
+    }
+
+    int[] memo;
+    public int climbStairs(int n) {
+        memo = new int[n + 1];
+        return dp(n);
+    }
+
+    private int dp(int n) {
+        if (n <= 2) {
+            return n;
+        }
+
+        if (memo[n] > 0) {
+            return memo[n];
+        }
+        memo[n] = dp(n - 1) + dp(n - 2);
+        return memo[n];
     }
 }
 // @lc code=end
