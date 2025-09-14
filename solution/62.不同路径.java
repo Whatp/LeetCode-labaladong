@@ -61,45 +61,80 @@
  */
 
 // @lc code=start
+
+import java.util.Arrays;
+
 class Solution {
 
+    /**
+     * 只能向下走或者向右走，走到最后一步，可以dp[i][j]，表示
+     * 走到i j 的路径
+     * 或者
+     * @param m
+     * @param n
+     * @return
+     */
+    public int uniquePaths0(int m, int n) {
+        if (m == 0 || n == 0) return n;
+
+        int[][] dp = new int[m][n];
+        dp[0][0] = 1;
+        for (int i = 0; i < m; i++) {
+            dp[i][0] = 1;
+        }
+        for (int j = 0; j < n; j++) {
+            dp[0][j] = 1;
+        }
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+
+    /**
+     * 自顶向下的备忘录算法
+     */
     int[][] memo;
 
     public int uniquePaths(int m, int n) {
         memo = new int[m][n];
+        for (int[] rows : memo) {
+            Arrays.fill(rows, -1);
+        }
         return dp(m - 1, n - 1);
     }
 
-    int dp(int x, int y) {
-        if (x == 0 || y == 0) return 1;
-        if (x < 0 || y < 0) return 0;
+    int dp (int m, int n) {
+        if (m == 0 && n == 0) return 1;
+        if (m < 0 || n < 0) return 0;
 
-        if (memo[x][y] > 0) return memo[x][y];
+        if (memo[m][n] != -1) {
+            return memo[m][n];
+        }
 
-        memo[x][y] = dp(x - 1, y) + dp(x, y - 1);
-        return memo[x][y];
+        memo[m][n] = dp(m - 1, n) + dp(m, n - 1);
+        return memo[m][n];
     }
 }
 // @lc code=end
 
-
-
 /*
-// @lcpr case=start
-// 3\n7\n
-// @lcpr case=end
-
-// @lcpr case=start
-// 3\n2\n
-// @lcpr case=end
-
-// @lcpr case=start
-// 7\n3\n
-// @lcpr case=end
-
-// @lcpr case=start
-// 3\n3\n
-// @lcpr case=end
-
+ * // @lcpr case=start
+ * // 3\n7\n
+ * // @lcpr case=end
+ * 
+ * // @lcpr case=start
+ * // 3\n2\n
+ * // @lcpr case=end
+ * 
+ * // @lcpr case=start
+ * // 7\n3\n
+ * // @lcpr case=end
+ * 
+ * // @lcpr case=start
+ * // 3\n3\n
+ * // @lcpr case=end
+ * 
  */
-
